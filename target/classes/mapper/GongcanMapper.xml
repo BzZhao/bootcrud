@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootcrud.mapper.GongcanMapper">
+  <resultMap id="BaseResultMap" type="com.bootcrud.entity.Gongcan">
+    <!--@mbg.generated-->
+    <!--@Table gongcan-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="kaitongriqi" jdbcType="VARCHAR" property="kaitongriqi" />
+    <result column="shebeichangjia" jdbcType="VARCHAR" property="shebeichangjia" />
+    <result column="zhishi" jdbcType="VARCHAR" property="zhishi" />
+    <result column="wangguan" jdbcType="VARCHAR" property="wangguan" />
+    <result column="mcc" jdbcType="CHAR" property="mcc" />
+    <result column="mnc" jdbcType="CHAR" property="mnc" />
+    <result column="tac" jdbcType="VARCHAR" property="tac" />
+    <result column="wangyuanid" jdbcType="VARCHAR" property="wangyuanid" />
+    <result column="enb_id" jdbcType="VARCHAR" property="enbId" />
+    <result column="ziwang" jdbcType="VARCHAR" property="ziwang" />
+    <result column="enb_name" jdbcType="VARCHAR" property="enbName" />
+    <result column="changjia" jdbcType="VARCHAR" property="changjia" />
+    <result column="quyv" jdbcType="VARCHAR" property="quyv" />
+    <result column="lonb" jdbcType="DOUBLE" property="lonb" />
+    <result column="latb" jdbcType="DOUBLE" property="latb" />
+    <result column="xiaoquhao" jdbcType="VARCHAR" property="xiaoquhao" />
+    <result column="cell_id" jdbcType="VARCHAR" property="cellId" />
+    <result column="eci" jdbcType="VARCHAR" property="eci" />
+    <result column="cell_name" jdbcType="VARCHAR" property="cellName" />
+    <result column="shudichangjia" jdbcType="VARCHAR" property="shudichangjia" />
+    <result column="rru_id" jdbcType="VARCHAR" property="rruId" />
+    <result column="zhichidiantiao" jdbcType="CHAR" property="zhichidiantiao" />
+    <result column="cellgonglv" jdbcType="VARCHAR" property="cellgonglv" />
+    <result column="pinduanzhishi" jdbcType="VARCHAR" property="pinduanzhishi" />
+    <result column="sxzhongxinpindian" jdbcType="VARCHAR" property="sxzhongxinpindian" />
+    <result column="xxzhongxinpindian" jdbcType="VARCHAR" property="xxzhongxinpindian" />
+    <result column="pindianhao" jdbcType="VARCHAR" property="pindianhao" />
+    <result column="daikuan" jdbcType="VARCHAR" property="daikuan" />
+    <result column="fugaileixing" jdbcType="VARCHAR" property="fugaileixing" />
+    <result column="lonc" jdbcType="DOUBLE" property="lonc" />
+    <result column="latc" jdbcType="DOUBLE" property="latc" />
+    <result column="pci" jdbcType="VARCHAR" property="pci" />
+    <result column="mod3" jdbcType="CHAR" property="mod3" />
+    <result column="Azimuth" jdbcType="VARCHAR" property="azimuth" />
+    <result column="mtilt" jdbcType="VARCHAR" property="mtilt" />
+    <result column="etilt" jdbcType="VARCHAR" property="etilt" />
+    <result column="zongxiaqingjiao" jdbcType="VARCHAR" property="zongxiaqingjiao" />
+    <result column="anthigh" jdbcType="VARCHAR" property="anthigh" />
+    <result column="genxulie" jdbcType="VARCHAR" property="genxulie" />
+    <result column="zhuangtai" jdbcType="VARCHAR" property="zhuangtai" />
+    <result column="wangyuanip" jdbcType="VARCHAR" property="wangyuanip" />
+    <result column="changjing" jdbcType="VARCHAR" property="changjing" />
+    <result column="wulizhanming" jdbcType="VARCHAR" property="wulizhanming" />
+  </resultMap>
+ <!-- <sql id="Base_Column_List">
+    &lt;!&ndash;@mbg.generated&ndash;&gt;
+    id, kaitongriqi, shebeichangjia, zhishi, wangguan, mcc, mnc, tac, wangyuanid, enb_id, 
+    ziwang, enb_name, changjia, quyv, lonb, latb, xiaoquhao, cell_id, eci, cell_name, 
+    shudichangjia, rru_id, zhichidiantiao, cellgonglv, pinduanzhishi, sxzhongxinpindian, 
+    xxzhongxinpindian, pindianhao, daikuan, fugaileixing, lonc, latc, pci, mod3, Azimuth, 
+    mtilt, etilt, zongxiaqingjiao, anthigh, genxulie, zhuangtai, wangyuanip, changjing, 
+    wulizhanming
+  </sql>-->
+</mapper>

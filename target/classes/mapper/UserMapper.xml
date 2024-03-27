@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootcrud.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.bootcrud.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table t_user-->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_password" jdbcType="CHAR" property="userPassword" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="salt" jdbcType="CHAR" property="salt" />
+    <result column="user_role" jdbcType="INTEGER" property="userRole" />
+    <result column="user_state" jdbcType="INTEGER" property="userState" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="crated_time" jdbcType="TIMESTAMP" property="cratedTime" />
+    <result column="modified_user" jdbcType="VARCHAR" property="modifiedUser" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    user_id, user_name, user_password, phone, salt, user_role, user_state, created_user, 
+    crated_time, modified_user, modified_time
+  </sql>
+
+  <select id="findByUsername" resultMap="BaseResultMap">
+    select * from t_user where t_user.user_name=#{userName}
+  </select>
+
+  <insert id="insert">
+    insert into localdb.t_user(
+        user_name, user_password, phone, salt, user_role, user_state,
+        created_user, crated_time, modified_user, modified_time
+    )
+    value (
+        #{userName},#{userPassword},#{phone},#{salt},#{userRole}, #{userState},
+        #{createdUser},#{cratedTime},#{modifiedUser},#{modifiedTime}
+    )
+  </insert>
+</mapper>
