@@ -25,7 +25,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void reg(User user) {
-        System.out.println("-----1----"+user.toString());
         //调用user.getUserName()方法得到username
         String username = user.getUserName();
         //调用findByUsername（username）判断用户是否注册过
@@ -36,7 +35,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new UsernameDuplicatedException("用户名已存在");
         }
 
-        System.out.println("-----2----"+user.toString());
         //密码加密
         //盐值+密码+盐值  --盐值随机的字符串 --连续加密三次
         String oldpassword = user.getUserPassword();
@@ -55,7 +53,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setCratedTime(date);
         user.setModifiedUser(user.getUserName());
         user.setModifiedTime(date);
-        System.out.println("-----3----"+user.toString());
         Integer rows = userMapper.insert(user);
         if(rows != 1){
             throw new insertException("注册过程中产生了未知的异常");
@@ -69,7 +66,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         for(int i = 0 ; i<3 ; i++){
             password = DigestUtils.md5DigestAsHex((salt+password+salt).getBytes()).toUpperCase();
         }
-        
         //返回加密后的密码
         return password;
     }
