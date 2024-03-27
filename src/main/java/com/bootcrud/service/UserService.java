@@ -9,5 +9,5 @@ public interface UserService extends IService<User>{
      */
     void reg(User user);
 
-    //void login(User user);
+    User login(User user);
 }

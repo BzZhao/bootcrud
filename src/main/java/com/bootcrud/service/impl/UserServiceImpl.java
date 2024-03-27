@@ -1,15 +1,15 @@
 package com.bootcrud.service.impl;
 
+import ch.qos.logback.core.joran.action.NewRuleAction;
+import com.bootcrud.service.ex.PasswordNotMatchException;
+import com.bootcrud.service.ex.UserNotFoundException;
 import com.bootcrud.service.ex.UsernameDuplicatedException;
 import com.bootcrud.service.ex.insertException;
-import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import java.io.PipedOutputStream;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -58,6 +58,35 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new insertException("注册过程中产生了未知的异常");
         }
     }
+
+    @Override
+    public User login(User user) {
+        //根据用户名查询用户的数据是否存在，如果不存在抛出异常
+        String username = user.getUserName();
+        User result = userMapper.findByUsername(username);
+        if(result == null){
+            throw new UserNotFoundException("用户数据不存在！");
+        }
+        //检测用户的密码是否匹配
+        //获取数据库中加密之后的密码
+        String oldMd5Password = result.getUserPassword();
+        //将用户的密码按照相同的算法加密
+        String newMd5Password = getMd5(user.getUserPassword(),user.getSalt());
+        if(!newMd5Password.equals(oldMd5Password)){
+            throw new PasswordNotMatchException("密码错误！");
+        }
+
+        //判断用户状态 1：被删除
+        if(result.getUserState() == 1){
+            throw new UserNotFoundException("用户不存在！");
+        }
+        user = new User();
+        user.setUserId(result.getUserId());
+        user.setUserName(result.getUserName());
+
+        return user;
+    }
+
     /**
      * md5算法加密
      */
@@ -66,7 +95,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         for(int i = 0 ; i<3 ; i++){
             password = DigestUtils.md5DigestAsHex((salt+password+salt).getBytes()).toUpperCase();
         }
-        //返回加密后的密码111
+        //返回加密后的密码
         return password;
     }
 }

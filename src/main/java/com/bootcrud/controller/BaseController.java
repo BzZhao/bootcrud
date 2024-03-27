@@ -1,8 +1,6 @@
 package com.bootcrud.controller;
 
-import com.bootcrud.service.ex.ServiceException;
-import com.bootcrud.service.ex.UsernameDuplicatedException;
-import com.bootcrud.service.ex.insertException;
+import com.bootcrud.service.ex.*;
 import com.bootcrud.util.JsonResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -19,9 +17,15 @@ public class BaseController {
         if (e instanceof UsernameDuplicatedException){
             result.setState(4000);
             result.setMessage("用户名已存在");
+        } else if (e instanceof UserNotFoundException) {
+            result.setState(5001);
+            result.setMessage("用户不存在！");
         } else if (e instanceof insertException) {
             result.setState(5000);
             result.setMessage("未知异常，注册失败！");
+        } else if (e instanceof PasswordNotMatchException) {
+            result.setState(5002);
+            result.setMessage("密码错误！");
         }
         return result;
     }

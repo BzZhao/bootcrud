@@ -2,9 +2,8 @@ package com.bootcrud.controller;
 
 import com.bootcrud.entity.User;
 import com.bootcrud.service.UserService;
-import com.bootcrud.service.ex.UsernameDuplicatedException;
-import com.bootcrud.service.ex.insertException;
 import com.bootcrud.util.JsonResult;
+import jakarta.servlet.http.HttpSession;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +22,16 @@ public class UserController extends BaseController{
         userService.reg(user);
         return new JsonResult<>(OK);
     };
+
+    @RequestMapping("/login")
+    public JsonResult<User> login(User user, HttpSession session){
+
+        User data = userService.login(user);
+        session.setAttribute("userId",data.getUserId());
+        session.setAttribute("userName",data.getUserName());
+        return new JsonResult<>(OK,data);
+
+    }
 
 /*    @RequestMapping("/user/reg")
     public JsonResult<Void> reg(User user){

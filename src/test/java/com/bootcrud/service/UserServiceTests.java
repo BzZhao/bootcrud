@@ -7,6 +7,7 @@ import com.bootcrud.service.ex.ServiceException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -39,5 +40,13 @@ public class UserServiceTests {
             //获取异常的具体描述信息
             System.out.println(e.getMessage());
         }
+    }
+
+    @Test
+    public void login(){
+        User user = new User();
+        user.setUserName("007");
+        user.setUserPassword("123456");
+        User result = userService.login(user);
     }
 }
