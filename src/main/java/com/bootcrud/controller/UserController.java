@@ -18,17 +18,20 @@ public class UserController extends BaseController{
     private UserService userService;
     @RequestMapping("/user/reg")
     public JsonResult<Void> reg(User user){
-
+        //System.out.println("--------00----"+user.toString());
         userService.reg(user);
         return new JsonResult<>(OK);
     };
 
-    @RequestMapping("/login")
+    @RequestMapping("/user/login")
     public JsonResult<User> login(User user, HttpSession session){
-
+        //System.out.println("~~~~~0~~~~~"+user.toString());
+        //向session对象中完成数据的绑定（全局有效）
         User data = userService.login(user);
         session.setAttribute("userId",data.getUserId());
         session.setAttribute("userName",data.getUserName());
+        System.out.println("userId----------"+getuseridFromSession(session));
+        System.out.println("userName----------"+getusernameFromSession(session));
         return new JsonResult<>(OK,data);
 
     }

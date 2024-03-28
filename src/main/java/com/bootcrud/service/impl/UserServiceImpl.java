@@ -54,6 +54,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setModifiedUser(user.getUserName());
         user.setModifiedTime(date);
         Integer rows = userMapper.insert(user);
+        System.out.println("--------reg3---------"+user.toString());
         if(rows != 1){
             throw new insertException("注册过程中产生了未知的异常");
         }
@@ -61,9 +62,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User login(User user) {
+        System.out.println("------login-user.tostring-------"+user.toString());
         //根据用户名查询用户的数据是否存在，如果不存在抛出异常
         String username = user.getUserName();
         User result = userMapper.findByUsername(username);
+        //System.out.println("~~~~~~~~~~~~~~~"+result.toString());
         if(result == null){
             throw new UserNotFoundException("用户数据不存在！");
         }
@@ -71,7 +74,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //获取数据库中加密之后的密码
         String oldMd5Password = result.getUserPassword();
         //将用户的密码按照相同的算法加密
-        String newMd5Password = getMd5(user.getUserPassword(),user.getSalt());
+        String newMd5Password = getMd5(user.getUserPassword(),result.getSalt());
         if(!newMd5Password.equals(oldMd5Password)){
             throw new PasswordNotMatchException("密码错误！");
         }
@@ -83,7 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user = new User();
         user.setUserId(result.getUserId());
         user.setUserName(result.getUserName());
-
+        //System.out.println("~~~~~~~~~~~~~2~~~"+user.toString());
         return user;
     }
 

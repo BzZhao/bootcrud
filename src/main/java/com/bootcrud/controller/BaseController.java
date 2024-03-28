@@ -2,6 +2,7 @@ package com.bootcrud.controller;
 
 import com.bootcrud.service.ex.*;
 import com.bootcrud.util.JsonResult;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -28,6 +29,14 @@ public class BaseController {
             result.setMessage("密码错误！");
         }
         return result;
+    }
+
+    protected final Integer getuseridFromSession(HttpSession session){
+        return Integer.valueOf(session.getAttribute("userId").toString());
+
+    }
+    protected final String getusernameFromSession(HttpSession session){
+        return session.getAttribute("userName").toString();
     }
 
 }
