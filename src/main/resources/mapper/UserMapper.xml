@@ -36,4 +36,15 @@
         #{createdUser},#{cratedTime},#{modifiedUser},#{modifiedTime}
     )
   </insert>
+
+  <select id="findByUserId" resultMap="BaseResultMap">
+
+  </select>
+  <update id="updatePasswordByid">
+    update t_user set
+        user_password = #{userPassword},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+      where user_id=#{userId}
+  </update>
 </mapper>
