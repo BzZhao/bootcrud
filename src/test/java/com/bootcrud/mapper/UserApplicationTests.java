@@ -1,7 +1,9 @@
 package com.bootcrud.mapper;
 
 
+import com.baomidou.mybatisplus.core.toolkit.MybatisBatchUtils;
 import com.bootcrud.entity.User;
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +38,11 @@ public class UserApplicationTests {
         User user = userMapper.findByUsername("lindong");
         System.out.println(user.toString());
     }
+
+    @Test
+    public void selectpage(){
+
+    }
+
+
 }

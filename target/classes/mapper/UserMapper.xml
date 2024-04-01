@@ -41,10 +41,10 @@
 
   </select>
   <update id="updatePasswordByid">
-    update localdb.t_user set
+    update t_user set
         user_password = #{userPassword},
         modified_user = #{modifiedUser},
         modified_time = #{modifiedTime}
-      where user_id=${userId}
+      where user_id=#{userId}
   </update>
 </mapper>

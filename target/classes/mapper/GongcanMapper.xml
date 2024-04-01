@@ -58,4 +58,10 @@
     mtilt, etilt, zongxiaqingjiao, anthigh, genxulie, zhuangtai, wangyuanip, changjing, 
     wulizhanming
   </sql>-->
+  <select id="selectPage" resultType="com.bootcrud.entity.Gongcan">
+    select * from gongcan
+  </select>
+
+
+
 </mapper>
